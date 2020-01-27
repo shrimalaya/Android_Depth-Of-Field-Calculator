@@ -13,7 +13,7 @@ import ca.programDemo.model.Lens;
 public class CalculateDoF extends AppCompatActivity {
 
     private static final String EXTRA_MESSAGE = "Extra";
-    Lens lens = new Lens();
+    Lens lens = null;
 
     public static Intent makeLaunchIntent(Context c, String message) {
         Intent intent = new Intent(c, CalculateDoF.class);
