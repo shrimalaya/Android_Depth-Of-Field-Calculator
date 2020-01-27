@@ -9,6 +9,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -23,7 +24,7 @@ import ca.programDemo.model.LensManager;
 public class MainActivity extends AppCompatActivity {
 
     private static final double COC = 0.029;    // "Circle of Confusion" for a "Full Frame" camera
-    private LensManager manager = new LensManager();
+    private LensManager manager;
     private int size = 0;
     private String []myLenses = new String[size];
     private Scanner in = new Scanner(System.in);// Read from keyboard
@@ -42,16 +43,18 @@ public class MainActivity extends AppCompatActivity {
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(view -> {
             Intent i = AddLens.makeLaunchIntent(MainActivity.this, "Add Lens!");
-            startActivity(i);
+            startActivityForResult(i, 42);
         });
     }
 
     private void populateListView() {
         // Create list of items
-        manager.add(new Lens("Canon", 1.8, 50));
+       /* manager.add(new Lens("Canon", 1.8, 50));
         manager.add(new Lens("Tamron", 2.8, 90));
         manager.add(new Lens("Sigma", 2.8, 200));
         manager.add(new Lens("Nikon", 4, 200));
+        */
+        manager = LensManager.getInstance();
         size = manager.getManagerSize();
         myLenses = new String[size];
 
@@ -82,6 +85,20 @@ public class MainActivity extends AppCompatActivity {
             intent.putExtra("Extra", message);
             startActivity(intent);
         });
+    }
+
+    // gets called when the activity started, finishes
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        switch (requestCode) {
+            case 42:
+                int answer = data.getIntExtra("result", 0);
+                if(answer == 1)
+                    populateListView();
+                break;
+        }
     }
 
     @Override

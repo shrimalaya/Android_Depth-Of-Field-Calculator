@@ -1,5 +1,6 @@
 package com.example.a2_cmpt276;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,22 +8,23 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import android.os.Parcelable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import ca.programDemo.model.Lens;
+import ca.programDemo.model.LensManager;
 
 public class AddLens extends AppCompatActivity {
     String make;
     double aperture;
     double focalDistance;
+    private LensManager manager;
 
     EditText editMake, editAperture, editFocalLen;
 
-    Button saveButton;
+    Button saveButton, cancelButton;
 
     private static final String EXTRA_MESSAGE = "Extra-message";
 
@@ -53,9 +55,23 @@ public class AddLens extends AppCompatActivity {
                 focalDistance = Double.valueOf(editFocalLen.getText().toString());
 
                 Lens lens = new Lens(make, aperture, focalDistance);
+                manager = LensManager.getInstance();
+                manager.add(lens);
 
                 Intent intent = new Intent();
-                intent.putExtra("Lens", (Parcelable) lens);
+                intent.putExtra("result", 1);
+                setResult(Activity.RESULT_OK, intent);
+                finish();
+            }
+        });
+
+        cancelButton = (Button) findViewById(R.id.btnCancel);
+        cancelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.putExtra("result", 0);
+                setResult(Activity.RESULT_CANCELED, intent);
                 finish();
             }
         });
