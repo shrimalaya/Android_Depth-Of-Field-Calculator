@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -61,16 +62,23 @@ public class CalculateDoF extends AppCompatActivity {
 
         initInput();
 
+
         calculateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Distance = 1000*Double.valueOf(editDistance.getText().toString());
                 COC = Double.valueOf(editCOC.getText().toString());
-                F = Double.valueOf(editAperture.getText().toString());
+                F = fetchAperture();
 
-                DepthOfFieldCalc dofObject = new DepthOfFieldCalc(lens, Distance, F, COC);
+                if(F == -1) {
+                    showToast("ERROR: Input a smaller F-number");
+                    setOutputInvalid();
+                }
+                else {
 
-                calculateText(dofObject);
+                    DepthOfFieldCalc dofObject = new DepthOfFieldCalc(lens, Distance, F, COC);
+                    calculateText(dofObject);
+                }
             }
         });
     }
@@ -81,6 +89,29 @@ public class CalculateDoF extends AppCompatActivity {
         editDistance = (EditText) findViewById(R.id.editDistance);
         editAperture = (EditText) findViewById(R.id.editAperture);
         calculateButton =   (Button) findViewById(R.id.btnCalculateDOF);
+    }
+
+    private double fetchAperture() {
+        double aperture = Double.valueOf(editAperture.getText().toString());
+
+        if(aperture < lens.getMaxAperture())
+            return -1;
+        else
+            return aperture;
+    }
+
+    private void setOutputInvalid() {
+        TextView txtNFD = (TextView) findViewById(R.id.txtDisplayNFD);
+        TextView txtFFD = (TextView) findViewById(R.id.txtDisplayFFD);
+        TextView txtDOF = (TextView) findViewById(R.id.txtDisplayDOF);
+        TextView txtHFD = (TextView) findViewById(R.id.txtDisplayHFD);
+
+        txtNFD.setText("Invalid Aperture");
+        txtFFD.setText("Invalid Aperture");
+        txtDOF.setText("Invalid Aperture");
+        txtHFD.setText("Invalid Aperture");
+
+        return;
     }
 
     private void calculateText(DepthOfFieldCalc dofObject) {
@@ -105,6 +136,11 @@ public class CalculateDoF extends AppCompatActivity {
     private String formatM(double distanceInM) {
         DecimalFormat df = new DecimalFormat("0.00");
         return df.format(distanceInM);
+    }
+
+
+    private void showToast(String text) {
+        Toast.makeText(CalculateDoF.this, text, Toast.LENGTH_LONG).show();
     }
 
 }
