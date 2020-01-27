@@ -31,7 +31,6 @@ public class CalculateDoF extends AppCompatActivity {
         // Handle the extra
         Intent i = getIntent();
         String message = i.getStringExtra(EXTRA_MESSAGE);
-        //Toast.makeText(this, message, Toast.LENGTH_LONG).show();
         TextView textView = findViewById(R.id.txtPrintLens);
         textView.setText(message);
 

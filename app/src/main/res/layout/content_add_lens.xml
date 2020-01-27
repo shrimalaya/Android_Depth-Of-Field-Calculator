@@ -62,7 +62,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="ex: 150 for 150mm"
-        android:inputType="textPersonName"
+        android:inputType="number|numberDecimal"
         app:layout_constraintBottom_toBottomOf="@+id/txtFocalLen"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline"
@@ -74,7 +74,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="ex: 2.4 for F2.4"
-        android:inputType="textPersonName"
+        android:inputType="number|numberDecimal"
         app:layout_constraintBottom_toBottomOf="@+id/txtAperture"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline"
@@ -122,4 +122,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editAperture" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
