@@ -4,15 +4,16 @@ public class DepthOfFieldCalc {
     private Lens lens;
     private double distanceOfObjInMM;
     private double aperture;
-    public static final double CIRCLE_OF_CONFUSION_IN_MM = 0.029;
+    private double circleOfConfusionInM = 0.029;
     private double hyperFocalDistInMM;
 
-    public DepthOfFieldCalc(Lens lens, double distanceOfObjInMM, double aperture) {
+    public DepthOfFieldCalc(Lens lens, double distanceOfObjInMM, double aperture, double circleOfConfusionInM) {
         this.lens = lens;
         this.distanceOfObjInMM = distanceOfObjInMM;
         this.aperture = aperture;
+        this.circleOfConfusionInM = circleOfConfusionInM;
         this.hyperFocalDistInMM = Math.pow(this.lens.getFocalLengthInMM(), 2) /
-                (this.aperture*CIRCLE_OF_CONFUSION_IN_MM);
+                (this.aperture* this.circleOfConfusionInM);
     }
 
     public Lens getLens() {

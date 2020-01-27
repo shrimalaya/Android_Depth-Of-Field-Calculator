@@ -13,6 +13,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.text.DecimalFormat;
+
 import ca.programDemo.model.Lens;
 import ca.programDemo.model.LensManager;
 

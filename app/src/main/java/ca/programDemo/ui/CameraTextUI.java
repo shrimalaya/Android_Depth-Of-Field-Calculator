@@ -68,7 +68,7 @@ public class CameraTextUI {
                         counter++;
                     }
                     DepthOfFieldCalc object = new DepthOfFieldCalc(DoF_lens, getDistance*1000,
-                                                                    getAperture);
+                                                                    getAperture, COC);
                     String nearFP = formatM(object.getNearFocalPoint()/1000);
                     String farFP = formatM(object.getFarFocalPoint()/1000);
                     String hyperFocalP = formatM(object.getHyperFocalDistInMM()/1000);

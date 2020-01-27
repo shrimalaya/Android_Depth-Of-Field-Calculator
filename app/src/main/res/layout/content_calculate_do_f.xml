@@ -9,30 +9,30 @@
     tools:showIn="@layout/calculate_dof">
 
     <TextView
-        android:id="@+id/txtDisplayDOF"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:text="Enter all values"
-        android:textSize="14sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/txtDOF"
-        app:layout_constraintStart_toStartOf="@+id/guideline3"
-        app:layout_constraintTop_toTopOf="@+id/txtDOF" />
-
-    <TextView
         android:id="@+id/txtDisplayFFD"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:text="Enter all values"
-        android:textSize="14sp"
+        android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/txtFFD"
         app:layout_constraintStart_toStartOf="@+id/guideline3"
         app:layout_constraintTop_toTopOf="@+id/txtFFD" />
+
+    <TextView
+        android:id="@+id/txtDisplayDOF"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:text="Enter all values"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/txtFF"
+        app:layout_constraintStart_toStartOf="@+id/guideline3"
+        app:layout_constraintTop_toTopOf="@+id/txtFF" />
 
     <TextView
         android:id="@+id/txtDisplayHFD"
@@ -41,7 +41,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:text="Enter all values"
-        android:textSize="14sp"
+        android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/txtHFD"
         app:layout_constraintStart_toStartOf="@+id/guideline3"
@@ -58,14 +58,14 @@
         android:layout_marginRight="16dp"
         android:layout_marginBottom="16dp"
         android:text="Near Focal Distance"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toTopOf="@+id/txtDOF"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/txtFFD"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/txtFFD"
+        android:id="@+id/txtFF"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="65dp"
@@ -73,15 +73,15 @@
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginBottom="16dp"
-        android:text="Far Focal Distance"
-        android:textSize="14sp"
+        android:text="Depth of Field"
+        android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/txtHFD"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtDOF" />
+        app:layout_constraintTop_toBottomOf="@+id/txtFFD" />
 
     <TextView
-        android:id="@+id/txtDOF"
+        android:id="@+id/txtFFD"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="94dp"
@@ -89,9 +89,9 @@
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginBottom="16dp"
-        android:text="Depth of Field"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toTopOf="@+id/txtFFD"
+        android:text="Far Focal Distance"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/txtFF"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtNFD" />
@@ -106,12 +106,12 @@
         android:layout_marginRight="16dp"
         android:layout_marginBottom="32dp"
         android:text="Hyperfocal Distance"
-        android:textSize="14sp"
+        android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/txtPhotoDetails"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtFFD" />
+        app:layout_constraintTop_toBottomOf="@+id/txtFF" />
 
     <TextView
         android:id="@+id/txtPhotoDetails"
@@ -163,7 +163,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:text="Enter all values"
-        android:textSize="14sp"
+        android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/txtNFD"
         app:layout_constraintStart_toStartOf="@+id/guideline3"
@@ -179,6 +179,7 @@
         android:layout_marginRight="16dp"
         android:layout_marginBottom="24dp"
         android:text="Distance to subject [m]"
+        android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/txtSelectedAperture"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
         app:layout_constraintStart_toStartOf="parent" />
@@ -193,7 +194,7 @@
         android:layout_marginRight="16dp"
         android:layout_marginBottom="24dp"
         android:text="Circle of Confusion [m]"
-        android:textSize="14sp"
+        android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/txtDistance"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
         app:layout_constraintStart_toStartOf="parent" />
@@ -208,6 +209,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:text="Selected Aperture"
+        android:textSize="16sp"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -220,7 +222,8 @@
         android:ems="10"
         android:hint="ex: 0.03 for 0.03m"
         android:inputType="number|numberDecimal"
-        android:textSize="14sp"
+        android:text="0.029"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/txtCOC"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline3"
@@ -233,7 +236,7 @@
         android:ems="10"
         android:hint="ex: 1.5 for 1.5m"
         android:inputType="number|numberDecimal"
-        android:textSize="14sp"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/txtDistance"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline3"
@@ -246,7 +249,7 @@
         android:ems="10"
         android:hint="ex: 2.8 for F2.8"
         android:inputType="number|numberDecimal"
-        android:textSize="14sp"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/txtSelectedAperture"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline3"
