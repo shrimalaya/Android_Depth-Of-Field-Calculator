@@ -2,45 +2,22 @@ package com.example.a2_cmpt276;
 
 import android.content.Intent;
 import android.os.Bundle;
-
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.w3c.dom.Text;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.Scanner;
 
 import ca.programDemo.model.Lens;
 import ca.programDemo.model.LensManager;
-import ca.programDemo.ui.CameraTextUI;
-
-/*
-
-
-public class Main {
-    public static void main(String args[]) {
-        //Initialize collection of Lens objects
-        LensManager manager = new LensManager();
-        //Initiate UI
-        CameraTextUI ui = new CameraTextUI(manager);
-        //Display UI
-        ui.show();
-    }
-}
-*/
-
 
 
 public class MainActivity extends AppCompatActivity {
@@ -97,14 +74,13 @@ public class MainActivity extends AppCompatActivity {
 
     private void registerClickCallback() {
         ListView list = (ListView) findViewById(R.id.listViewMain);
-        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                TextView textView = (TextView) view;
-                String message = "You clicked # " + position
-                                + ", which is strong: " + textView.getText().toString();
-                Toast.makeText(MainActivity.this, message, Toast.LENGTH_LONG).show();
-            }
+        list.setOnItemClickListener((parent, view, position, id) -> {
+            TextView textView = (TextView) view;
+            String message = textView.getText().toString();
+            //Toast.makeText(MainActivity.this, message, Toast.LENGTH_LONG).show();
+            Intent intent = CalculateDoF.makeLaunchIntent(MainActivity.this, "CalculateDoF");
+            intent.putExtra("Extra", message);
+            startActivity(intent);
         });
     }
 

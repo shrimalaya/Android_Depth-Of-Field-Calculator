@@ -9,36 +9,36 @@
     tools:showIn="@layout/activity_add_lens">
 
     <TextView
+        android:id="@+id/txtFocalLen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginBottom="36dp"
+        android:text="Focal Length [mm]"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/txtAperture"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
         android:id="@+id/txtMake"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginBottom="40dp"
         android:text="Make"
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/txtFocalLen"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/txtFocalLen"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginBottom="32dp"
-        android:text="Focal Length"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/txtAperture"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
         android:id="@+id/txtAperture"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginBottom="56dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginBottom="140dp"
         android:text="Aperture"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -49,6 +49,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:hint="ex: Canon"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="@+id/txtMake"
         app:layout_constraintEnd_toEndOf="parent"
@@ -60,6 +61,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:hint="ex: 150 for 150mm"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="@+id/txtFocalLen"
         app:layout_constraintEnd_toEndOf="parent"
@@ -71,6 +73,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:hint="ex: 2.4 for F2.4"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="@+id/txtAperture"
         app:layout_constraintEnd_toEndOf="parent"
@@ -80,21 +83,43 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView2"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="40dp"
+        android:layout_width="422dp"
+        android:layout_height="358dp"
         android:layout_marginBottom="16dp"
         android:foreground="@android:drawable/ic_menu_camera"
         app:layout_constraintBottom_toTopOf="@+id/txtMake"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.23"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="142dp" />
+        app:layout_constraintGuide_begin="157dp" />
+
+    <Button
+        android:id="@+id/btnSave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="14dp"
+        android:layout_marginLeft="14dp"
+        android:text="Save"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editAperture" />
+
+    <Button
+        android:id="@+id/btnCancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="7dp"
+        android:layout_marginRight="7dp"
+        android:text="Cancel"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editAperture" />
 </androidx.constraintlayout.widget.ConstraintLayout>
