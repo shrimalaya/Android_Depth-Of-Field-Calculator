@@ -17,6 +17,17 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        sourceCompatibility = 1.8
+        targetCompatibility = 1.8
+    }
+
+    // Support vector assets
+    android {
+        defaultConfig {
+            vectorDrawables.useSupportLibrary = true
+        }
+    }
 }
 
 dependencies {

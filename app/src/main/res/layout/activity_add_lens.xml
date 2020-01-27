@@ -4,10 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".AddLens">
 
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/AppTheme.AppBarOverlay">
@@ -21,25 +20,6 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <include layout="@layout/content_main" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@drawable/ic_add_white_24dp" />
-
-    <TextView
-        android:id="@+id/txtAppbarHeader"
-        android:layout_width="374dp"
-        android:layout_height="wrap_content"
-        android:fontFamily="sans-serif"
-        android:text="Depth of Field Calculator"
-        android:textColor="#FAF8F8"
-        android:textSize="24sp"
-        app:layout_anchor="@+id/appBarLayout"
-        app:layout_anchorGravity="center" />
+    <include layout="@layout/content_add_lens" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
