@@ -19,6 +19,17 @@ import android.widget.Toast;
 import ca.programDemo.model.Lens;
 import ca.programDemo.model.LensManager;
 
+/**
+ * Add Lens activity implementation
+ * Inherited from Main Activity
+ *
+ * Makes changes to Singleton LensManager object and updates
+ *  list view through encapsulated intents
+ *
+ * Takes in the Make, MaxAperture, and Focal length of a lens
+ *  and adds it to the list of lenses.
+ */
+
 public class AddLens extends AppCompatActivity {
     String make;
     double aperture;
@@ -62,6 +73,10 @@ public class AddLens extends AppCompatActivity {
         return true;
     }
 
+    /**
+     * Method to register interface with menu options from
+     *  the App Bar.
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Citation: referenced from https://www.youtube.com/watch?v=GqsQLoQ-6MI

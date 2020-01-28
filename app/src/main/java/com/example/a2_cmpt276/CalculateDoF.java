@@ -25,6 +25,22 @@ import ca.programDemo.model.DepthOfFieldCalc;
 import ca.programDemo.model.Lens;
 import ca.programDemo.model.LensManager;
 
+/**
+ * CalculateDoF activity implementation with optional features
+ * included.
+ *
+ * Allows user to input distance of object, aperture and Circle of confusion.
+ *
+ * Calculates Near focal point, far focal point,
+ * hyperfocal distance and depth of field values
+ *
+ * Inherited from MainActivity
+ *
+ * Allows user to go to edit lens activity through menu
+ * or delete the currently selected lens on 1 click
+ *
+ */
+
 public class CalculateDoF extends AppCompatActivity {
 
     private static final String EXTRA_MESSAGE = "Extra";
@@ -196,6 +212,10 @@ public class CalculateDoF extends AppCompatActivity {
         return true;
     }
 
+    /**
+     * Method to register interface with menu options from
+     *  the App Bar.
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Citation: referenced from https://www.youtube.com/watch?v=GqsQLoQ-6MI
@@ -219,6 +239,9 @@ public class CalculateDoF extends AppCompatActivity {
         }
     }
 
+    /**
+     *  Overridden function to work with startActivityForResult function
+     */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

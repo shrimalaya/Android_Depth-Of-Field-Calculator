@@ -20,6 +20,14 @@ import android.widget.Toast;
 import ca.programDemo.model.Lens;
 import ca.programDemo.model.LensManager;
 
+/**
+ * Edit lens activity to modify existing lenses
+ *
+ * Modified lenses are moved last on the list
+ *
+ * User has the option to change 1, 2 or all 3
+ *      properties for any chosen lens
+ */
 public class EditLens extends AppCompatActivity {
 
     private static final String EXTRA_MESSAGE = "Extra";
@@ -81,6 +89,10 @@ public class EditLens extends AppCompatActivity {
         return true;
     }
 
+    /**
+     * Method to register interface with menu options from
+     *  the App Bar.
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Citation: referenced from https://www.youtube.com/watch?v=GqsQLoQ-6MI
@@ -89,6 +101,8 @@ public class EditLens extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         switch(item.getItemId()) {
             case R.id.menuSaveChanges:
+
+                //Check empty inputs
                 if(!(editAperture2.getText().toString().isEmpty() ||
                         editMake2.getText().toString().isEmpty() ||
                         editFocalLength2.getText().toString().isEmpty()) ) {
@@ -139,6 +153,7 @@ public class EditLens extends AppCompatActivity {
         }
     }
 
+    //Method to display toast messages
     private void showToast(String text) {
         Toast.makeText(EditLens.this, text, Toast.LENGTH_LONG).show();
     }

@@ -88,6 +88,9 @@ public class MainActivity extends AppCompatActivity {
         list.setAdapter(adapter);
     }
 
+    /**
+     * Callback register for CalculateDoF activity
+     */
     private void registerClickCallback() {
         ListView list = (ListView) findViewById(R.id.listViewMain);
         list.setOnItemClickListener((parent, view, position, id) -> {
@@ -101,6 +104,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     // gets called when the activity started, finishes
+    /**
+     *  Overridden function to work with startActivityForResult function
+     */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

@@ -4,6 +4,17 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+/**
+ * Lens Manager class
+ *
+ * Implements an iterable ist of Lens objects
+ *
+ * Allows adding and removing of objects
+ *
+ * This is a singleton class to work with the same instance
+ *
+ * Prepopulated by instructor-provided values
+ */
 public class LensManager implements Iterable<Lens> {
     private List<Lens> lenses = new ArrayList<>();
 

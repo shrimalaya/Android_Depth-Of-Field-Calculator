@@ -1,5 +1,10 @@
 package ca.programDemo.model;
 
+/**
+ * Depth of Field class implementation
+ *
+ * Allows modification of Circle Of Confusion
+ */
 public class DepthOfFieldCalc {
     private Lens lens;
     private double distanceOfObjInMM;
@@ -7,6 +12,7 @@ public class DepthOfFieldCalc {
     private double circleOfConfusionInM = 0.029;
     private double hyperFocalDistInMM;
 
+    //Constructor
     public DepthOfFieldCalc(Lens lens, double distanceOfObjInMM, double aperture, double circleOfConfusionInM) {
         this.lens = lens;
         this.distanceOfObjInMM = distanceOfObjInMM;
@@ -28,6 +34,12 @@ public class DepthOfFieldCalc {
         return hyperFocalDistInMM;
     }
 
+    /**
+     * Calculation of Near and Far focal points.
+     * Plus, Depth of Field
+     *
+     * Everything is done in MM
+     */
     public double getNearFocalPoint() {
         return (getHyperFocalDistInMM() * getDistanceOfObjInMM()) /
                 (getHyperFocalDistInMM() + (getDistanceOfObjInMM() - getLens().getFocalLengthInMM()));
