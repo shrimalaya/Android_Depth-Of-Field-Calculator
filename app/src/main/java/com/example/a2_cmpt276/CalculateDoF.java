@@ -1,14 +1,19 @@
 package com.example.a2_cmpt276;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -22,6 +27,7 @@ public class CalculateDoF extends AppCompatActivity {
 
     private static final String EXTRA_MESSAGE = "Extra";
     Lens lens = null;
+    LensManager manager;
 
     // Input variables
     double COC, Distance, F;
@@ -29,6 +35,8 @@ public class CalculateDoF extends AppCompatActivity {
     //EditText
     EditText editCOC, editDistance, editAperture;
     Button calculateButton;
+    Button menuEdit;
+    Button menuDelete;
 
     // Output (Text) Variables
     double NFD, FFD, DOF, HFD;
@@ -45,14 +53,19 @@ public class CalculateDoF extends AppCompatActivity {
         setContentView(R.layout.calculate_dof);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        runInterface();
+    }
+
+    private void runInterface() {
         // Handle the extra
         Intent i = getIntent();
         String message = i.getStringExtra(EXTRA_MESSAGE);
         TextView textView = findViewById(R.id.txtPrintLens);
         textView.setText(message);
 
-        LensManager manager = LensManager.getInstance();
+        manager = LensManager.getInstance();
 
         for(Lens temp: manager) {
             if((temp.toString()).equals(message)) {
@@ -61,7 +74,6 @@ public class CalculateDoF extends AppCompatActivity {
         }
 
         initInput();
-
 
         calculateButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,6 +93,10 @@ public class CalculateDoF extends AppCompatActivity {
                 }
             }
         });
+
+        Intent intent = new Intent();
+        intent.putExtra("result", 1);
+        setResult(Activity.RESULT_OK, intent);
     }
 
     private void initInput() {
@@ -89,6 +105,7 @@ public class CalculateDoF extends AppCompatActivity {
         editDistance = (EditText) findViewById(R.id.editDistance);
         editAperture = (EditText) findViewById(R.id.editAperture);
         calculateButton =   (Button) findViewById(R.id.btnCalculateDOF);
+        menuEdit = (Button) findViewById(R.id.menuEdit);
     }
 
     private double fetchAperture() {
@@ -143,4 +160,44 @@ public class CalculateDoF extends AppCompatActivity {
         Toast.makeText(CalculateDoF.this, text, Toast.LENGTH_LONG).show();
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        MenuInflater inflater = getMenuInflater();
+        getMenuInflater().inflate(R.menu.menu_calculatedof, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        switch(item.getItemId()) {
+            case R.id.menuEdit:
+                Intent i = EditLens.makeLaunchIntent(CalculateDoF.this, "EditLens");
+                i.putExtra("Extra", lens.toString());
+                startActivityForResult(i, 31);
+                finish();
+                return true;
+            case R.id.menuDelete:
+                LensManager manager = LensManager.getInstance();
+                manager.delete(lens);
+                finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        switch(requestCode) {
+            case 31:
+                runInterface();
+                break;
+        }
+    }
 }

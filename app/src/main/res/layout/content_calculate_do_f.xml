@@ -125,6 +125,7 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/txtCOC"
         app:layout_constraintEnd_toStartOf="@+id/txtPrintLens"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
 
     <androidx.constraintlayout.widget.Guideline
@@ -221,7 +222,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="ex: 0.03 for 0.03m"
-        android:inputType="number|numberDecimal"
+        android:inputType="numberDecimal"
         android:text="0.029"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/txtCOC"
@@ -242,19 +243,6 @@
         app:layout_constraintStart_toStartOf="@+id/guideline3"
         app:layout_constraintTop_toTopOf="@+id/txtDistance" />
 
-    <EditText
-        android:id="@+id/editAperture"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="ex: 2.8 for F2.8"
-        android:inputType="number|numberDecimal"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/txtSelectedAperture"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/guideline3"
-        app:layout_constraintTop_toTopOf="@+id/txtSelectedAperture" />
-
     <Button
         android:id="@+id/btnCalculateDOF"
         android:layout_width="wrap_content"
@@ -269,4 +257,16 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtSelectedAperture" />
+
+    <EditText
+        android:id="@+id/editAperture"
+        android:layout_width="210dp"
+        android:layout_height="49dp"
+        android:ems="10"
+        android:hint="ex: 2.8 for F2.8"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="@+id/txtSelectedAperture"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline3"
+        app:layout_constraintTop_toTopOf="@+id/txtSelectedAperture" />
 </androidx.constraintlayout.widget.ConstraintLayout>

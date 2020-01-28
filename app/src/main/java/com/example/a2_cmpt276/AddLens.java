@@ -13,15 +13,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import java.text.DecimalFormat;
-
 import ca.programDemo.model.Lens;
 import ca.programDemo.model.LensManager;
 
 public class AddLens extends AppCompatActivity {
     String make;
     double aperture;
-    double focalDistance;
+    int focalDistance;
     private LensManager manager;
 
     EditText editMake, editAperture, editFocalLen;
@@ -42,11 +40,13 @@ public class AddLens extends AppCompatActivity {
         setContentView(R.layout.activity_add_lens);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
 
         //input
-        editMake = (EditText) findViewById(R.id.editMake);
-        editAperture = (EditText) findViewById(R.id.editAperture);
-        editFocalLen = (EditText) findViewById(R.id.editFocalLen);
+        editMake = (EditText) findViewById(R.id.editMake2);
+        editAperture = (EditText) findViewById(R.id.editAperture2);
+        editFocalLen = (EditText) findViewById(R.id.editFocalLen2);
 
         saveButton = (Button) findViewById(R.id.btnSave);
         saveButton.setOnClickListener(new View.OnClickListener() {
@@ -54,7 +54,7 @@ public class AddLens extends AppCompatActivity {
             public void onClick(View v) {
                 make = editMake.getText().toString();
                 aperture = Double.valueOf(editAperture.getText().toString());
-                focalDistance = Double.valueOf(editFocalLen.getText().toString());
+                focalDistance = Integer.valueOf(editFocalLen.getText().toString());
 
                 Lens lens = new Lens(make, aperture, focalDistance);
                 manager = LensManager.getInstance();

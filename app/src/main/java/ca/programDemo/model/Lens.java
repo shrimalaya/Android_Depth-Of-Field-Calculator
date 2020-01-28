@@ -3,9 +3,9 @@ package ca.programDemo.model;
 public class Lens {
     private String make; //Make of camera. eg: Canon, Nikon, etc
     private double maxAperture; //F-number for lens
-    private double focalLengthInMM;
+    private int focalLengthInMM;
 
-    public Lens(String make, double maxAperture, double focalLengthInMM) {
+    public Lens(String make, double maxAperture, int focalLengthInMM) {
         this.make = make;
         this.maxAperture = maxAperture;
         this.focalLengthInMM = focalLengthInMM;
@@ -19,7 +19,7 @@ public class Lens {
         return maxAperture;
     }
 
-    public double getFocalLengthInMM() {
+    public int getFocalLengthInMM() {
         return focalLengthInMM;
     }
 
@@ -31,7 +31,7 @@ public class Lens {
         this.maxAperture = maxAperture;
     }
 
-    public void setFocalLengthInMM(double focalLengthInMM) {
+    public void setFocalLengthInMM(int focalLengthInMM) {
         this.focalLengthInMM = focalLengthInMM;
     }
 

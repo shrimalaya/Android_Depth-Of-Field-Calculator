@@ -8,6 +8,7 @@ public class LensManager implements Iterable<Lens> {
     private List<Lens> lenses = new ArrayList<>();
 
     public void add (Lens lens) {lenses.add(lens);}
+    public void delete(Lens lens) {lenses.remove(lens);}
 
     /*
         Singleton support

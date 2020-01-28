@@ -1,6 +1,7 @@
 <resources>
-    <string name="app_name">a2_cmpt276</string>
+    <string name="app_name">Depth of Field Calculator</string>
     <string name="action_settings">Settings</string>
-    <string name="title_activity_add_lens">AddLens</string>
-    <string name="title_activity_calculate_do_f">CalculateDoF</string>
+    <string name="title_activity_add_lens">Add Lens</string>
+    <string name="title_activity_calculate_do_f">Calculate DoF</string>
+    <string name="title_activity_edit_lens">Edit Lens</string>
 </resources>

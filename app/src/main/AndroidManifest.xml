@@ -10,13 +10,17 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".EditLens"
+            android:label="@string/title_activity_edit_lens"
+            android:theme="@style/AppTheme.NoActionBar" android:parentActivityName=".AddLens"></activity>
+        <activity
             android:name=".CalculateDoF"
             android:label="@string/title_activity_calculate_do_f"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" android:parentActivityName=".MainActivity"/>
         <activity
             android:name=".AddLens"
             android:label="@string/title_activity_add_lens"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar" android:parentActivityName=".MainActivity"/>
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"

@@ -2,12 +2,9 @@ package com.example.a2_cmpt276;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -83,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
             //Toast.makeText(MainActivity.this, message, Toast.LENGTH_LONG).show();
             Intent intent = CalculateDoF.makeLaunchIntent(MainActivity.this, "CalculateDoF");
             intent.putExtra("Extra", message);
-            startActivity(intent);
+            startActivityForResult(intent, 43);
         });
     }
 
@@ -98,28 +95,11 @@ public class MainActivity extends AppCompatActivity {
                 if(answer == 1)
                     populateListView();
                 break;
+            case 43:
+                int answer2 = data.getIntExtra("result", 1);
+                if(answer2 == 1)
+                    populateListView();
+                break;
         }
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
     }
 }

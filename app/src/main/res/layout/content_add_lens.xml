@@ -45,7 +45,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/editMake"
+        android:id="@+id/editMake2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -57,7 +57,7 @@
         app:layout_constraintTop_toTopOf="@+id/txtMake" />
 
     <EditText
-        android:id="@+id/editFocalLen"
+        android:id="@+id/editFocalLen2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -69,7 +69,7 @@
         app:layout_constraintTop_toTopOf="@+id/txtFocalLen" />
 
     <EditText
-        android:id="@+id/editAperture"
+        android:id="@+id/editAperture2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -84,7 +84,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView2"
         android:layout_width="422dp"
-        android:layout_height="358dp"
+        android:layout_height="0dp"
         android:layout_marginBottom="16dp"
         android:foreground="@android:drawable/ic_menu_camera"
         app:layout_constraintBottom_toTopOf="@+id/txtMake"
@@ -110,7 +110,7 @@
         android:text="Save"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editAperture" />
+        app:layout_constraintTop_toBottomOf="@+id/editAperture2" />
 
     <Button
         android:id="@+id/btnCancel"
@@ -121,6 +121,6 @@
         android:text="Cancel"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editAperture" />
+        app:layout_constraintTop_toBottomOf="@+id/editAperture2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
