@@ -8,6 +8,9 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -23,8 +26,6 @@ public class AddLens extends AppCompatActivity {
     private LensManager manager;
 
     EditText editMake, editAperture, editFocalLen;
-
-    Button saveButton, cancelButton;
 
     private static final String EXTRA_MESSAGE = "Extra-message";
 
@@ -48,41 +49,73 @@ public class AddLens extends AppCompatActivity {
         editAperture = (EditText) findViewById(R.id.editAperture2);
         editFocalLen = (EditText) findViewById(R.id.editFocalLen2);
 
-        saveButton = (Button) findViewById(R.id.btnSave);
-        saveButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                make = editMake.getText().toString();
-                aperture = Double.valueOf(editAperture.getText().toString());
-                focalDistance = Integer.valueOf(editFocalLen.getText().toString());
-
-                Lens lens = new Lens(make, aperture, focalDistance);
-                manager = LensManager.getInstance();
-                manager.add(lens);
-
-                Intent intent = new Intent();
-                intent.putExtra("result", 1);
-                setResult(Activity.RESULT_OK, intent);
-                finish();
-            }
-        });
-
-        cancelButton = (Button) findViewById(R.id.btnCancel);
-        cancelButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.putExtra("result", 0);
-                setResult(Activity.RESULT_CANCELED, intent);
-                finish();
-            }
-        });
-
         // Handle the extra
         Intent i = getIntent();
         String message = i.getStringExtra(EXTRA_MESSAGE);
-        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+    }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        MenuInflater inflater = getMenuInflater();
+        getMenuInflater().inflate(R.menu.menu_addlens, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Citation: referenced from https://www.youtube.com/watch?v=GqsQLoQ-6MI
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+
+        switch(item.getItemId()) {
+            case R.id.menuSave:
+                if(!(editAperture.getText().toString().isEmpty() ||
+                        editFocalLen.getText().toString().isEmpty() ||
+                        editMake.getText().toString().isEmpty()) ) {
+
+                    make = editMake.getText().toString();
+                    aperture = Double.valueOf(editAperture.getText().toString());
+                    focalDistance = Integer.valueOf(editFocalLen.getText().toString());
+
+                    boolean valid = true;
+                    if (make.length() <= 0 || aperture < 1.4 || focalDistance <= 0) {
+                        valid = false;
+
+                        showToast("Required valid values:" +
+                                "\nMake length  > 0" +
+                                "\nFocal length > 0" +
+                                "\nAperture (F) >= 1.4");
+
+                        make = editMake.getText().toString();
+                        aperture = Double.valueOf(editAperture.getText().toString());
+                        focalDistance = Integer.valueOf(editFocalLen.getText().toString());
+                    }
+
+                    if (valid) {
+                        Lens lens = new Lens(make, aperture, focalDistance);
+                        manager = LensManager.getInstance();
+                        manager.add(lens);
+
+                        Intent intent = new Intent();
+                        intent.putExtra("result", 1);
+                        setResult(Activity.RESULT_OK, intent);
+                        finish();
+                        return true;
+                    } else
+                        return false;
+                }
+                else {
+                    showToast("Required valid values:" +
+                            "\nMake length  > 0" +
+                            "\nFocal length > 0" +
+                            "\nAperture (F) >= 1.4");
+                    return false;
+                }
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     private void showToast(String text) {

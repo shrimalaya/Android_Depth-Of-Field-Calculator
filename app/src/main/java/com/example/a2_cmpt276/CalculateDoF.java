@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -47,6 +49,7 @@ public class CalculateDoF extends AppCompatActivity {
         return intent;
     }
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,18 +81,30 @@ public class CalculateDoF extends AppCompatActivity {
         calculateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Distance = 1000*Double.valueOf(editDistance.getText().toString());
-                COC = Double.valueOf(editCOC.getText().toString());
-                F = fetchAperture();
+                if(!(editAperture.getText().toString().isEmpty() ||
+                        editCOC.getText().toString().isEmpty() ||
+                        editDistance.getText().toString().isEmpty()) ) {
 
-                if(F == -1) {
-                    showToast("ERROR: Input a smaller F-number");
-                    setOutputInvalid();
-                }
-                else {
+                    Distance = 1000 * Double.valueOf(editDistance.getText().toString());
+                    COC = Double.valueOf(editCOC.getText().toString());
+                    F = fetchAperture();
 
-                    DepthOfFieldCalc dofObject = new DepthOfFieldCalc(lens, Distance, F, COC);
-                    calculateText(dofObject);
+                    if (F == -1) {
+                        showToast("Required valid Aperture:" +
+                                "\nSelect Aperture(F) >= 1.4" +
+                                "\nAperture <= max Aperture of lens");
+                        setInvalidF();
+                    } else if (Distance <= 0 || COC <= 0) {
+                        showToast("Required valid values:" +
+                                "\nCircle of Confusion > 0" +
+                                "\nDistance to subject > 0" +
+                                "\nSelect Aperture(F) >= 1.4" +
+                                "\nAperture <= max Aperture of lens");
+                        setInvalidInput();
+                    } else {
+                        DepthOfFieldCalc dofObject = new DepthOfFieldCalc(lens, Distance, F, COC);
+                        calculateText(dofObject);
+                    }
                 }
             }
         });
@@ -105,7 +120,6 @@ public class CalculateDoF extends AppCompatActivity {
         editDistance = (EditText) findViewById(R.id.editDistance);
         editAperture = (EditText) findViewById(R.id.editAperture);
         calculateButton =   (Button) findViewById(R.id.btnCalculateDOF);
-        menuEdit = (Button) findViewById(R.id.menuEdit);
     }
 
     private double fetchAperture() {
@@ -117,7 +131,7 @@ public class CalculateDoF extends AppCompatActivity {
             return aperture;
     }
 
-    private void setOutputInvalid() {
+    private void setInvalidF() {
         TextView txtNFD = (TextView) findViewById(R.id.txtDisplayNFD);
         TextView txtFFD = (TextView) findViewById(R.id.txtDisplayFFD);
         TextView txtDOF = (TextView) findViewById(R.id.txtDisplayDOF);
@@ -127,6 +141,20 @@ public class CalculateDoF extends AppCompatActivity {
         txtFFD.setText("Invalid Aperture");
         txtDOF.setText("Invalid Aperture");
         txtHFD.setText("Invalid Aperture");
+
+        return;
+    }
+
+    private void setInvalidInput() {
+        TextView txtNFD = (TextView) findViewById(R.id.txtDisplayNFD);
+        TextView txtFFD = (TextView) findViewById(R.id.txtDisplayFFD);
+        TextView txtDOF = (TextView) findViewById(R.id.txtDisplayDOF);
+        TextView txtHFD = (TextView) findViewById(R.id.txtDisplayHFD);
+
+        txtNFD.setText("Enter valid values");
+        txtFFD.setText("Enter valid values");
+        txtDOF.setText("Enter valid values");
+        txtHFD.setText("Enter valid values");
 
         return;
     }
@@ -170,6 +198,7 @@ public class CalculateDoF extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        // Citation: referenced from https://www.youtube.com/watch?v=GqsQLoQ-6MI
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.

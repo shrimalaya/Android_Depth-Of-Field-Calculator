@@ -61,6 +61,22 @@ public class MainActivity extends AppCompatActivity {
             myLenses[i++] = lens.toString();
         }
 
+        if(size==0)
+        {
+            myLenses = new String[1];
+            TextView textView = findViewById(R.id.textView);
+            textView.setText("");
+            myLenses[0] = "\n\n\n\nWelcome to the DoF Calculator!" +
+                    "\n\nTo start, click on the 'add' icon." +
+                    "\n\nYou can explore optional features\nwhen you populate the list of " +
+                    "\nlenses.\n\n";
+        }
+        else
+        {
+            TextView textView = findViewById(R.id.textView);
+            textView.setText("Select a lens to use:");
+        }
+
         // Build Adapter
         ArrayAdapter<String> adapter = new ArrayAdapter<String> (
                 this,           // Context for view
