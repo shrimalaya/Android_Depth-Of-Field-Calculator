@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * Lens Manager class
  *
- * Implements an iterable ist of Lens objects
+ * Implements an iterable list of Lens objects
  *
  * Allows adding and removing of objects
  *

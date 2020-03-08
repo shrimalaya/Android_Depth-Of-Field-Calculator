@@ -53,8 +53,6 @@ public class CalculateDoF extends AppCompatActivity {
     //EditText
     EditText editCOC, editDistance, editAperture;
     Button calculateButton;
-    Button menuEdit;
-    Button menuDelete;
 
     // Output (Text) Variables
     double NFD, FFD, DOF, HFD;

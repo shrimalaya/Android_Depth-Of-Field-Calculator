@@ -46,11 +46,6 @@ public class MainActivity extends AppCompatActivity {
 
     private void populateListView() {
         // Create list of items
-       /* manager.add(new Lens("Canon", 1.8, 50));
-        manager.add(new Lens("Tamron", 2.8, 90));
-        manager.add(new Lens("Sigma", 2.8, 200));
-        manager.add(new Lens("Nikon", 4, 200));
-        */
         manager = LensManager.getInstance();
         size = manager.getManagerSize();
         myLenses = new String[size];
